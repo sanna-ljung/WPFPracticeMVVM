@@ -1,0 +1,79 @@
+﻿<Window x:Class="WpfPractice2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPractice2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="650">
+    
+    <Grid x:Name="ProductsGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="10">
+            <TextBlock Text="Nya Produkter" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Artikelnummer:" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding InputArticleNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Height="30" Margin="0,0,0,10" Padding="5"/>
+
+            <TextBlock Text="Kategori:" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding InputCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Height="30" Margin="0,0,0,10" Padding="5"/>
+
+            <TextBlock Text="Pris:" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding InputPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Height="30" Margin="0,0,0,10" Padding="5"/>
+
+            <Button Command="{Binding AddCommand}" 
+                    Height="35" Padding="5" Content="Lägg till produkt" Margin="0,0,0,5"/>
+            <Button Command="{Binding ClearCommand}" 
+                    Height="35" Padding="5" Content="Rensa inputfält"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" VerticalAlignment="Bottom">
+            <Button Command="{Binding DeleteCommand}"
+                    Height="35"
+                    Margin="5"
+                    Padding="10"
+                    Content="Ta bort vald produkt"/>
+        </StackPanel>
+
+        <ListView Grid.Row="1" Grid.Column="0"
+                  ItemsSource="{Binding Products}"
+                  SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
+                  Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Artikelnummer" Width="100" DisplayMemberBinding="{Binding ArticleNumber}"/>
+                    <GridViewColumn Header="Kategori" Width="120" DisplayMemberBinding="{Binding Category}"/>
+                    <GridViewColumn Header="Pris" Width="80" DisplayMemberBinding="{Binding Price}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
+            <TextBlock Text="Detaljer (Skrivskyddad)" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Artikelnummer:" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding SelectedProduct.ArticleNumber, Mode=TwoWay}" 
+                     IsReadOnly="True" Height="30" Margin="0,0,0,10" Padding="5" Background="#F0F0F0"/>
+
+            <TextBlock Text="Kategori:" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding SelectedProduct.Category, Mode=TwoWay}" 
+                     IsReadOnly="True" Height="30" Margin="0,0,0,10" Padding="5" Background="#F0F0F0"/>
+
+            <TextBlock Text="Pris:" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding SelectedProduct.Price, Mode=TwoWay}" 
+                     IsReadOnly="True" Height="30" Margin="0,0,0,10" Padding="5" Background="#F0F0F0"/>
+        </StackPanel>
+    </Grid>
+</Window>
