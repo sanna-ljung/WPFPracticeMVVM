@@ -25,9 +25,9 @@ namespace WpfPractice2
         public MainWindow()
         {
             InitializeComponent();
-            viewModel = new ProductViewModel();
-            DataContext = viewModel;
-            Loaded += ProductsView_Loaded;
+            //viewModel = new ProductViewModel();
+            //DataContext = viewModel;
+            //Loaded += ProductsView_Loaded;
         }
 
         private async void ProductsView_Loaded(object sender, RoutedEventArgs e)

@@ -9,6 +9,7 @@ namespace WpfPractice2.Models
 {
     public class Product
     {
+        public int Id { get; set; }
         public int ArticleNumber { get; set; }
         public string Category { get; set; }
         public decimal Price { get; set; }
